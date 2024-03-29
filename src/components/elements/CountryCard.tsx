@@ -1,3 +1,5 @@
+import { vazir } from "@/app/layout";
+import { isRTL } from "@/utils/helpers";
 import Image from "next/image";
 
 type CountryCardProps = {
@@ -35,8 +37,12 @@ const CountryCard = ({ name, flag, flags, region }: CountryCardProps) => {
       </div>
 
       <div dir="auto">
-        <p>{name?.native?.common}</p>
-        <p>{name?.native?.official}</p>
+        <p className={`${isRTL(name?.native?.common) && vazir.className}`}>
+          {name?.native?.common}
+        </p>
+        <p className={`${isRTL(name?.native?.common) && vazir.className}`}>
+          {name?.native?.official}
+        </p>
       </div>
 
       {/* <div>
