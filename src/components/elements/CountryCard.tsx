@@ -23,17 +23,26 @@ type CountryCardProps = {
 const CountryCard = ({ name, flag, flags, region }: CountryCardProps) => {
   return (
     <div
-      className="p-5 w-80 h-44 !border-opacity-50 rounded-lg 
-    bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 text-gray-300"
+      className="
+      p-5 w-80 h-44 
+      border-opacity-50 rounded-lg border-gray-100 border-2
+      flex flex-col justify-between
+      bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 text-gray-300
+      hover:border-opacity-70 hover:bg-opacity-15
+      cursor-pointer
+    "
     >
-      <div className="flex items-center text-2xl">
-        <p>{flag}</p>
-        <p className="ml-1">{name?.common}</p>
-      </div>
-
       <div>
-        <p>{name?.official}</p>
-        <p>{region}</p>
+        <div className="flex items-center text-2xl">
+          <p>{flag}</p>
+          <p className="ml-1">{name?.common}</p>
+        </div>
+        <div className="flex items-center">
+          <p className="p-1 border text-xs w-fit rounded-xl bg-gray-400 bg-opacity-50">
+            {region}
+          </p>
+          <p className="ml-1 text-sm">{name?.official}</p>
+        </div>
       </div>
 
       <div dir="auto">
