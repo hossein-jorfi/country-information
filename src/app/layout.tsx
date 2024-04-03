@@ -23,9 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${openSans.className}`}>
-        <BackgroundGradientAnimation>
-        </BackgroundGradientAnimation>
-          {children}
+        <BackgroundGradientAnimation />
+        {children}
       </body>
     </html>
   );
