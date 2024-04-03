@@ -23,9 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${openSans.className}`}>
-        <BackgroundGradientAnimation className="w-full">
-          {children}
+        <BackgroundGradientAnimation>
         </BackgroundGradientAnimation>
+          {children}
       </body>
     </html>
   );
