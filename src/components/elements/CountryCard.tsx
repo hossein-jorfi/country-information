@@ -20,7 +20,7 @@ const CountryCard = ({ name, flag, flags, region }: CountryType) => {
           <p>{flag}</p>
           <p className="ml-1">{name?.common}</p>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center mt-2">
           <p className="p-1 border text-xs w-fit rounded-xl bg-gray-400 bg-opacity-50">
             {region}
           </p>
@@ -28,7 +28,7 @@ const CountryCard = ({ name, flag, flags, region }: CountryType) => {
         </div>
       </div>
 
-      <div dir="auto">
+      <div dir="auto" className="mt-5">
         <p className={`${isRTL(name?.native?.common) && "rtl-font"}`}>
           {name?.native?.common}
         </p>
