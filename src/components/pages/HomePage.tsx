@@ -1,6 +1,14 @@
+"use client";
 import CountryCard from "../elements/CountryCard";
+import { CountryType } from "@/constants/types";
 
-const HomePage = () => {
+type HomePageProps = {
+  data: CountryType[];
+};
+
+const HomePage = ({ data }: HomePageProps) => {
+
+  console.log(data)
   return (
     <div className="flex justify-between w-full">
       <CountryCard
