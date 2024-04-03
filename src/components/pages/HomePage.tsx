@@ -11,7 +11,7 @@ const HomePage = ({ data }: HomePageProps) => {
     data[0].name.nativeName[Object.keys(data[0].name?.nativeName)[0]]
   );
   return (
-    <div className="grid grid-cols-3 gap-2 w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-2  gap-2 w-full">
       {data?.map((item: any, index) => {
         if (item?.name?.nativeName) {
           console.log(

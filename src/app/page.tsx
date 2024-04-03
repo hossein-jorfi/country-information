@@ -17,7 +17,7 @@ export default async function Home() {
   const data: [] = await getData();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-5 sm:p-10 md:p-14 lg:p-24 xl:container">
       <HomePage data={data} />
     </main>
   );
