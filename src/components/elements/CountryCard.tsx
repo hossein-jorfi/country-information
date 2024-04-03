@@ -8,7 +8,7 @@ const CountryCard = ({ name, flag, flags, region }: CountryType) => {
   return (
     <div
       className="
-      p-5 w-80 h-44 
+      p-5
       border-opacity-50 rounded-lg border-gray-100 border-2
       flex flex-col justify-between
       bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 text-gray-300
