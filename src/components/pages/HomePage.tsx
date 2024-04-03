@@ -10,12 +10,6 @@ const HomePage = ({ data }: HomePageProps) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
       {data?.map((item: any, index) => {
-        if (item?.name?.nativeName) {
-          console.log(
-            item?.name?.nativeName[Object?.keys(item.name.nativeName)[0]]
-              .official
-          );
-        }
         return (
           <CountryCard
             key={item?.name?.common || index}
