@@ -7,9 +7,6 @@ type HomePageProps = {
 };
 
 const HomePage = ({ data }: HomePageProps) => {
-  console.log(
-    data[0].name.nativeName[Object.keys(data[0].name?.nativeName)[0]]
-  );
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
       {data?.map((item: any, index) => {
