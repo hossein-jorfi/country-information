@@ -1,26 +1,10 @@
+"use client";
 import { vazir } from "@/app/layout";
+import { CountryType } from "@/constants/types";
 import { isRTL } from "@/utils/helpers";
 import Image from "next/image";
 
-type CountryCardProps = {
-  region: string;
-  name: {
-    common: string;
-    official: string;
-    native: {
-      common: string;
-      official: string;
-    };
-  };
-  flags: {
-    png: string;
-    svg: string;
-    alt: string;
-  };
-  flag: string;
-};
-
-const CountryCard = ({ name, flag, flags, region }: CountryCardProps) => {
+const CountryCard = ({ name, flag, flags, region }: CountryType) => {
   return (
     <div
       className="
