@@ -5,3 +5,11 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+html {
+  font-family: var(--font-opensans);
+}
+
+.rtl-font {
+  font-family: var(--font-vazir);
+}

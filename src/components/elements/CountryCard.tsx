@@ -1,5 +1,4 @@
 "use client";
-import { vazir } from "@/app/layout";
 import { CountryType } from "@/constants/types";
 import { isRTL } from "@/utils/helpers";
 import Image from "next/image";
@@ -30,10 +29,10 @@ const CountryCard = ({ name, flag, flags, region }: CountryType) => {
       </div>
 
       <div dir="auto">
-        <p className={`${isRTL(name?.native?.common) && vazir.className}`}>
+        <p className={`${isRTL(name?.native?.common) && "rtl-font"}`}>
           {name?.native?.common}
         </p>
-        <p className={`${isRTL(name?.native?.common) && vazir.className}`}>
+        <p className={`${isRTL(name?.native?.common) && "rtl-font"}`}>
           {name?.native?.official}
         </p>
       </div>
