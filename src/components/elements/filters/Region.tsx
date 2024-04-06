@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import RegionItem from "./RegionItem";
 
 const regionsMock = [
   "Europe",
@@ -31,7 +32,7 @@ const Region = () => {
         <div onMouseEnter={() => setIsHover(true)}>
           <div onMouseLeave={() => setIsHover(false)} className="border w-fit">
             {regionsMock.map((item, index) => (
-              <div key={index}>{item}</div>
+              <RegionItem region={item} key={index} />
             ))}
           </div>
         </div>
