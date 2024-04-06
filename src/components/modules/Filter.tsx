@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
 import Region from "../elements/filters/Region";
 import Search from "../elements/filters/Search";
+import { RootState } from "@/lib/store";
 
 const Filter = () => {
+  const count = useSelector((state: RootState) => state.main);
   return (
     <div
       className="
