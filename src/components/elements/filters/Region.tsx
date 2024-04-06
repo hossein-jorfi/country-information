@@ -29,8 +29,11 @@ const Region = () => {
         Region
       </div>
       {isHover && (
-        <div onMouseEnter={() => setIsHover(true)}>
-          <div onMouseLeave={() => setIsHover(false)} className="border w-fit">
+        <div className="pt-1" onMouseEnter={() => setIsHover(true)}>
+          <div
+            className="w-fit p-2 rounded-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 text-gray-300"
+            onMouseLeave={() => setIsHover(false)}
+          >
             {regionsMock.map((item, index) => (
               <RegionItem region={item} key={index} />
             ))}
