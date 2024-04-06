@@ -1,3 +1,4 @@
+import Filter from "@/components/modules/Filter";
 import HomePage from "@/components/pages/HomePage";
 
 async function getData() {
@@ -17,7 +18,8 @@ export default async function Home() {
   const data: [] = await getData();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-5 sm:p-10 md:p-14 lg:p-24 xl:container">
+    <main className="p-5 sm:p-10 md:p-14 lg:p-24 xl:container">
+      <Filter />
       <HomePage data={data} />
     </main>
   );

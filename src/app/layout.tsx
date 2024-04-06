@@ -3,6 +3,7 @@ import { Inter, Open_Sans, Roboto } from "next/font/google";
 import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+import Filter from "@/components/modules/Filter";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
