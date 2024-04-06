@@ -13,33 +13,27 @@ const regionsMock = [
 ];
 
 const Region = () => {
-  const [isHover, setIsHover] = useState(false);
+  const [isHover, setIsHover] = useState(true);
   return (
-    <div className="mt-4">
-      <div
+    <div className="mt-4 ">
+      <button
+        data-tooltip-target="tooltip-no-arrow"
+        type="button"
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         className="
-          p-3 w-fit cursor-default
+          p-2 w-fit cursor-default
           bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 text-gray-300
           rounded-md
-          
+          flex flex-wrap
           "
       >
-        Region
-      </div>
-      {isHover && (
-        <div className="pt-1" onMouseEnter={() => setIsHover(true)}>
-          <div
-            className="w-fit p-2 rounded-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 text-gray-300"
-            onMouseLeave={() => setIsHover(false)}
-          >
-            {regionsMock.map((item, index) => (
-              <RegionItem region={item} key={index} />
-            ))}
-          </div>
-        </div>
-      )}
+        {isHover
+          ? regionsMock.map((item, index) => (
+              <RegionItem onClick={() => setIsHover(false)} region={item} key={index} />
+            ))
+          : <RegionItem onClick={() => setIsHover(false)} region={"Region"} />}
+      </button>
     </div>
   );
 };
