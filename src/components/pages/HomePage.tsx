@@ -1,6 +1,9 @@
 "use client";
-import CountryCard from "../elements/CountryCard";
+import { useRef } from "react";
+import { Provider } from "react-redux";
+import { makeStore, AppStore } from "@/lib/store";
 import { CountryType } from "@/constants/types";
+import CountryCard from "../elements/CountryCard";
 import Filter from "../modules/Filter";
 
 type HomePageProps = {
@@ -8,47 +11,55 @@ type HomePageProps = {
 };
 
 const HomePage = ({ data }: HomePageProps) => {
+  const storeRef = useRef<AppStore>();
+  if (!storeRef.current) {
+    storeRef.current = makeStore();
+  }
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
-      {data?.map((item: any, index) => {
-        return (
-          <CountryCard
-            key={item?.name?.common || index}
-            // flags={{
-            //   png: "https://flagcdn.com/w320/ir.png",
-            //   svg: "https://flagcdn.com/ir.svg",
-            //   alt: "The flag of Iran is composed of three equal horizontal bands of green, white and red. A red emblem of Iran is centered in the white band and Arabic inscriptions in white span the bottom edge of the green band and the top edge of the red band.",
-            // }}
-            // name={{
-            //   common: "Iran",
-            //   official: "Islamic Republic of Iran",
-            //   native: {
-            //     official: "جمهوری اسلامی ایران",
-            //     common: "ایران",
-            //   },
-            // }}
-            // region="Asia"
-            // flag="🇮🇷"
-            {...item}
-            name={{
-              ...item.name,
-              native: {
-                official: item?.name?.nativeName
-                  ? item?.name?.nativeName[
-                      Object?.keys(item?.name?.nativeName || {})[0]
-                    ].official
-                  : "-",
-                common: item?.name?.nativeName
-                  ? item?.name?.nativeName[
-                      Object?.keys(item?.name?.nativeName || {})[0]
-                    ].common
-                  : "-",
-              },
-            }}
-          />
-        );
-      })}
-    </div>
+    <Provider store={storeRef.current}>
+      <Filter />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
+        {data?.map((item: any, index) => {
+          return (
+            <CountryCard
+              key={item?.name?.common || index}
+              // flags={{
+              //   png: "https://flagcdn.com/w320/ir.png",
+              //   svg: "https://flagcdn.com/ir.svg",
+              //   alt: "The flag of Iran is composed of three equal horizontal bands of green, white and red. A red emblem of Iran is centered in the white band and Arabic inscriptions in white span the bottom edge of the green band and the top edge of the red band.",
+              // }}
+              // name={{
+              //   common: "Iran",
+              //   official: "Islamic Republic of Iran",
+              //   native: {
+              //     official: "جمهوری اسلامی ایران",
+              //     common: "ایران",
+              //   },
+              // }}
+              // region="Asia"
+              // flag="🇮🇷"
+              {...item}
+              name={{
+                ...item.name,
+                native: {
+                  official: item?.name?.nativeName
+                    ? item?.name?.nativeName[
+                        Object?.keys(item?.name?.nativeName || {})[0]
+                      ].official
+                    : "-",
+                  common: item?.name?.nativeName
+                    ? item?.name?.nativeName[
+                        Object?.keys(item?.name?.nativeName || {})[0]
+                      ].common
+                    : "-",
+                },
+              }}
+            />
+          );
+        })}
+      </div>
+    </Provider>
   );
 };
 

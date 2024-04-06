@@ -19,7 +19,6 @@ export default async function Home() {
 
   return (
     <main className="p-5 sm:p-10 md:p-14 lg:p-24 xl:container">
-      <Filter />
       <HomePage data={data} />
     </main>
   );
