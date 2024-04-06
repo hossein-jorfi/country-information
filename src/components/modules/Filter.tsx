@@ -1,10 +1,24 @@
-import { useSelector } from "react-redux";
+"use client";
+
+import { useDispatch, useSelector } from "react-redux";
 import Region from "../elements/filters/Region";
 import Search from "../elements/filters/Search";
 import { RootState } from "@/lib/store";
+import { CountryType } from "@/constants/types";
+import { initialData } from "@/lib/features/mainSlice";
+import { useEffect } from "react";
 
-const Filter = () => {
-  const count = useSelector((state: RootState) => state.main);
+type FilterPageProps = {
+  data: CountryType[];
+};
+
+const Filter = ({ data }: FilterPageProps) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(initialData(data));
+  }, []);
+
   return (
     <div
       className="
