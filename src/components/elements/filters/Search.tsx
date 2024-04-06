@@ -1,7 +1,19 @@
+"use client";
+
+import { setSearch } from "@/lib/features/mainSlice";
+import { RootState } from "@/lib/store";
+import { useDispatch, useSelector } from "react-redux";
+
 const Search = () => {
+  const search = useSelector((state: RootState) => state.main.search);
+
+  const dispatch = useDispatch();
+
   return (
     <div>
       <input
+        onChange={(e) => dispatch(setSearch(e.target.value))}
+        value={search}
         type="text"
         placeholder="Search"
         className="
