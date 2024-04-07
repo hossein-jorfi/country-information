@@ -1,5 +1,22 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+
+export type CountryType = {
+  region: string;
+  name: {
+    common: string;
+    official: string;
+    native: {
+      common: string;
+      official: string;
+    };
+  };
+  flags: {
+    png: string;
+    svg: string;
+    alt: string;
+  };
+  flag: string;
+};
 
 const initialState = {
   countries: [],
@@ -14,7 +31,7 @@ export const mainSlice = createSlice({
   reducers: {
     filterData: (state, action) => {
       state.countries = current(state).allCountries.filter(
-        (item) =>
+        (item: CountryType) =>
           item?.name?.common
             ?.toLowerCase()
             ?.includes(state.search.toLowerCase()) ||
