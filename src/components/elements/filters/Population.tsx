@@ -15,7 +15,7 @@ const Population = () => {
   );
 
   const clearHandler = () => {
-    // todo : clear filter from reducer
+    dispatch(setPopulationFilter({ prop: "clear", value: "" }));
     setIsClicked(false);
   };
 

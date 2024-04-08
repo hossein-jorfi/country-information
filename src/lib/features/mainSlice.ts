@@ -82,7 +82,11 @@ export const mainSlice = createSlice({
       mainSlice.caseReducers.filterData(state);
     },
     setPopulationFilter: (state, action: PopulationActionType) => {
-      state.population[action.payload.prop] = action.payload.value;
+      if (action.payload.prop === "clear") {
+        state.population = initialState.population;
+      } else {
+        state.population[action.payload.prop] = action.payload.value;
+      }
 
       mainSlice.caseReducers.filterData(state);
     },
@@ -91,7 +95,7 @@ export const mainSlice = createSlice({
 
 type PopulationActionType = {
   payload: {
-    prop: keyof { from: string; to: string };
+    prop: keyof { from: string; to: string } | "clear";
     value: string;
   };
   type: string;
