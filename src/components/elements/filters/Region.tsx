@@ -37,6 +37,7 @@ const Region = () => {
         data-tooltip-target="tooltip-no-arrow"
         type="button"
         onMouseEnter={() => setIsHover(true)}
+        onClick={() => setIsHover(!isHover)}
         onMouseLeave={() => setIsHover(false)}
         className="
           p-2 w-fit cursor-default
@@ -56,7 +57,7 @@ const Region = () => {
         )}
       </button>
       {selectedRegions.length > 0 && (
-        <div className="flex space-x-2">
+        <div className="flex flex-wrap space-x-2">
           {selectedRegions.map((item) => (
             <SelectedFilterItem
               key={item}
