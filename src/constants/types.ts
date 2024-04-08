@@ -14,4 +14,5 @@ export type CountryType = {
     alt: string;
   };
   flag: string;
+  population: number;
 };

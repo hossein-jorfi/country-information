@@ -1,22 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-
-type CountryType = {
-  region: string;
-  name: {
-    common: string;
-    official: string;
-    native: {
-      common: string;
-      official: string;
-    };
-  };
-  flags: {
-    png: string;
-    svg: string;
-    alt: string;
-  };
-  flag: string;
-};
+import { CountryType } from "@/constants/types";
 
 const initialState: {
   countries: CountryType[];
@@ -53,7 +36,6 @@ export const mainSlice = createSlice({
               ?.includes(state.search.toLowerCase())
         );
       }
-
       // region
       if (current(state).region.length > 0) {
         newData = newData.filter((item) => {
@@ -61,6 +43,17 @@ export const mainSlice = createSlice({
             current(state).region.findIndex(
               (region) => region?.toLowerCase() === item.region?.toLowerCase()
             ) !== -1
+          ) {
+            return item;
+          }
+        });
+      }
+      // population
+      if (state.population.from !== "" && state.population.from !== "") {
+        newData = newData.filter((item) => {
+          if (
+            item.population >= +state.population.from &&
+            item.population <= +state.population.to
           ) {
             return item;
           }
@@ -90,7 +83,8 @@ export const mainSlice = createSlice({
     },
     setPopulationFilter: (state, action: PopulationActionType) => {
       state.population[action.payload.prop] = action.payload.value;
-      console.log(current(state).population)
+
+      mainSlice.caseReducers.filterData(state);
     },
   },
 });
