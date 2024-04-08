@@ -23,11 +23,16 @@ const initialState: {
   allCountries: CountryType[];
   search: string;
   region: string[];
+  population: {
+    from: string;
+    to: string;
+  };
 } = {
   countries: [],
   allCountries: [],
   search: "",
   region: [],
+  population: { from: "", to: "" },
 };
 
 export const mainSlice = createSlice({
@@ -83,9 +88,22 @@ export const mainSlice = createSlice({
 
       mainSlice.caseReducers.filterData(state);
     },
+    setPopulationFilter: (state, action: PopulationActionType) => {
+      state.population[action.payload.prop] = action.payload.value;
+      console.log(current(state).population)
+    },
   },
 });
 
-export const { initialData, setSearch, setRegionFilter } = mainSlice.actions;
+type PopulationActionType = {
+  payload: {
+    prop: keyof { from: string; to: string };
+    value: string;
+  };
+  type: string;
+};
+
+export const { initialData, setSearch, setRegionFilter, setPopulationFilter } =
+  mainSlice.actions;
 
 export default mainSlice.reducer;

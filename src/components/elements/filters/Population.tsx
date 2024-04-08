@@ -1,10 +1,18 @@
 "use client";
-import { useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import CrossIcon from "@/icons/icons8-cross-50.png";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/lib/store";
+import { setPopulationFilter } from "@/lib/features/mainSlice";
 
 const Population = () => {
+  const dispatch = useDispatch();
   const [isClicked, setIsClicked] = useState(false);
+
+  const populationValues = useSelector(
+    (state: RootState) => state.main.population
+  );
 
   const clearHandler = () => {
     // todo : clear filter from reducer
@@ -26,9 +34,23 @@ const Population = () => {
       ) : (
         <div className="flex justify-between items-center">
           <div className="flex space-x-2">
-            <Input />
+            <Input
+              onChange={(e) =>
+                dispatch(
+                  setPopulationFilter({ prop: "from", value: e.target.value })
+                )
+              }
+              value={populationValues.from}
+            />
             <span>to</span>
-            <Input />
+            <Input
+              onChange={(e) =>
+                dispatch(
+                  setPopulationFilter({ prop: "to", value: e.target.value })
+                )
+              }
+              value={populationValues.to}
+            />
           </div>
           <span
             onClick={clearHandler}
@@ -44,9 +66,17 @@ const Population = () => {
 
 export default Population;
 
-const Input = () => {
+const Input = ({
+  onChange,
+  value,
+}: {
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  value: string;
+}) => {
   return (
     <input
+      onChange={onChange}
+      value={value}
       type="number"
       className="rounded-lg bg-white bg-opacity-30 px-3 py-1 outline-none text-sm"
     />
