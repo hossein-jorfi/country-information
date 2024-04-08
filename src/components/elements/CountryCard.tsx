@@ -22,7 +22,6 @@ const CountryCard = ({
       cursor-pointer
     "
     >
-      {/* {population} */}
       <div>
         <div className="flex items-center text-2xl">
           <p>{flag}</p>
@@ -36,7 +35,8 @@ const CountryCard = ({
         </div>
         <div className="flex items-center mt-2 space-x-1">
           <Image src={PersonIcon} alt="population" width={14} />
-          <p className="text-sm">{population}</p>
+          {/* <p className="text-sm">{commafy(population)}</p> */}
+          <p className="text-sm">{population.toLocaleString()}</p>
         </div>
       </div>
 
