@@ -27,6 +27,10 @@ const Region = () => {
     setIsHover(false);
   };
 
+  const deleteItemHandler = (value: string) => {
+    dispatch(setRegionFilter(`delete ${value}`));
+  };
+
   return (
     <div className="mt-4 flex items-center space-x-5">
       <button
@@ -54,7 +58,12 @@ const Region = () => {
       {selectedRegions.length > 0 && (
         <div className="flex space-x-2">
           {selectedRegions.map((item) => (
-            <SelectedFilterItem key={item}>{item}</SelectedFilterItem>
+            <SelectedFilterItem
+              key={item}
+              onClick={() => deleteItemHandler(item)}
+            >
+              {item}
+            </SelectedFilterItem>
           ))}
         </div>
       )}

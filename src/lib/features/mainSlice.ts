@@ -73,16 +73,19 @@ export const mainSlice = createSlice({
       mainSlice.caseReducers.filterData(state);
     },
     setRegionFilter: (state, action) => {
-      if (!current(state).region.includes(action.payload)) {
+      if (action.payload?.split(" ")[0] === "delete") {
+        state.region = current(state).region.filter(
+          (item) => item !== action.payload?.split(" ")[1]
+        );
+      } else if (!current(state).region.includes(action.payload)) {
         state.region = [...state.region, action.payload];
       }
-      
+
       mainSlice.caseReducers.filterData(state);
     },
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { initialData, setSearch, setRegionFilter } = mainSlice.actions;
 
 export default mainSlice.reducer;

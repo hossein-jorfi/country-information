@@ -12,6 +12,7 @@ const SelectedFilterItem = ({
 }: SelectedFilterItemProps) => {
   return (
     <div
+      onClick={onClick}
       className="
       bg-sky-500 bg-opacity-70
       p-1.5 
