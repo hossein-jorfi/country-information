@@ -70,11 +70,13 @@ export const mainSlice = createSlice({
     },
     setSearch: (state, action) => {
       state.search = action.payload;
-
       mainSlice.caseReducers.filterData(state);
     },
     setRegionFilter: (state, action) => {
-      state.region = [...state.region, action.payload];
+      if (!current(state).region.includes(action.payload)) {
+        state.region = [...state.region, action.payload];
+      }
+      console.log(current(state).region);
       mainSlice.caseReducers.filterData(state);
     },
   },
