@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import RegionItem from "./FilterItem";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setRegionFilter } from "@/lib/features/mainSlice";
+import { RootState } from "@/lib/store";
 
 const regionsMock = [
   "Europe",
@@ -18,13 +19,15 @@ const Region = () => {
   const dispatch = useDispatch();
   const [isHover, setIsHover] = useState(false);
 
+  const selectedRegions = useSelector((state: RootState) => state.main.region);
+
   const clickHandler = (value: string) => {
     dispatch(setRegionFilter(value?.toLowerCase()));
     setIsHover(false);
   };
 
   return (
-    <div className="mt-4 ">
+    <div className="mt-4 flex items-center space-x-5">
       <button
         data-tooltip-target="tooltip-no-arrow"
         type="button"
@@ -47,6 +50,13 @@ const Region = () => {
           <RegionItem onClick={() => setIsHover(false)}>{"Region"}</RegionItem>
         )}
       </button>
+      {selectedRegions.length && (
+        <div className="flex space-x-2">
+          {selectedRegions.map((item) => (
+            <div key={item}>{item}</div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

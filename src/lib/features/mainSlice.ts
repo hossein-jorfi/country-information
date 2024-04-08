@@ -76,7 +76,7 @@ export const mainSlice = createSlice({
       if (!current(state).region.includes(action.payload)) {
         state.region = [...state.region, action.payload];
       }
-      console.log(current(state).region);
+      
       mainSlice.caseReducers.filterData(state);
     },
   },
