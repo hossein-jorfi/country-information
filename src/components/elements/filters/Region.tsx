@@ -32,7 +32,7 @@ const Region = () => {
   };
 
   return (
-    <div className="mt-4 flex items-center space-x-5">
+    <div className="flex items-center space-x-5">
       <button
         data-tooltip-target="tooltip-no-arrow"
         type="button"
