@@ -18,7 +18,12 @@ type CountryType = {
   flag: string;
 };
 
-const initialState = {
+const initialState: {
+  countries: CountryType[];
+  allCountries: CountryType[];
+  search: string;
+  region: string[];
+} = {
   countries: [],
   allCountries: [],
   search: "",
@@ -29,16 +34,35 @@ export const mainSlice = createSlice({
   name: "main",
   initialState,
   reducers: {
-    filterData: (state, action) => {
-      state.countries = current(state).allCountries.filter(
-        (item: CountryType) =>
-          item?.name?.common
-            ?.toLowerCase()
-            ?.includes(state.search.toLowerCase()) ||
-          item?.name?.official
-            ?.toLowerCase()
-            ?.includes(state.search.toLowerCase())
-      );
+    filterData: (state) => {
+      let newData = current(state).allCountries;
+      // search
+      if (state.search) {
+        newData = newData.filter(
+          (item: CountryType) =>
+            item?.name?.common
+              ?.toLowerCase()
+              ?.includes(state.search.toLowerCase()) ||
+            item?.name?.official
+              ?.toLowerCase()
+              ?.includes(state.search.toLowerCase())
+        );
+      }
+
+      // region
+      if (current(state).region.length > 0) {
+        newData = newData.filter((item) => {
+          if (
+            current(state).region.findIndex(
+              (region) => region?.toLowerCase() === item.region?.toLowerCase()
+            ) !== -1
+          ) {
+            return item;
+          }
+        });
+      }
+
+      state.countries = newData;
     },
     initialData: (state, action) => {
       state.countries = action.payload;
@@ -47,11 +71,12 @@ export const mainSlice = createSlice({
     setSearch: (state, action) => {
       state.search = action.payload;
 
-      mainSlice.caseReducers.filterData(state, action);
+      mainSlice.caseReducers.filterData(state);
     },
     setRegionFilter: (state, action) => {
-      console.log(action.payload)
-    }
+      state.region = [...state.region, action.payload];
+      mainSlice.caseReducers.filterData(state);
+    },
   },
 });
 
