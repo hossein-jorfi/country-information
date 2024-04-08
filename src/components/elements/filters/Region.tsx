@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import RegionItem from "./RegionItem";
+import RegionItem from "./FilterItem";
+import { useDispatch } from "react-redux";
+import { setRegionFilter } from "@/lib/features/mainSlice";
 
 const regionsMock = [
   "Europe",
@@ -13,7 +15,14 @@ const regionsMock = [
 ];
 
 const Region = () => {
-  const [isHover, setIsHover] = useState(true);
+  const dispatch = useDispatch();
+  const [isHover, setIsHover] = useState(false);
+
+  const clickHandler = (value: string) => {
+    dispatch(setRegionFilter(value?.toLowerCase()));
+    setIsHover(false);
+  };
+
   return (
     <div className="mt-4 ">
       <button
@@ -28,11 +37,15 @@ const Region = () => {
           flex flex-wrap
           "
       >
-        {isHover
-          ? regionsMock.map((item, index) => (
-              <RegionItem onClick={() => setIsHover(false)} region={item} key={index} />
-            ))
-          : <RegionItem onClick={() => setIsHover(false)} region={"Region"} />}
+        {isHover ? (
+          regionsMock.map((item, index) => (
+            <RegionItem onClick={() => clickHandler(item)} key={index}>
+              {item}
+            </RegionItem>
+          ))
+        ) : (
+          <RegionItem onClick={() => setIsHover(false)}>{"Region"}</RegionItem>
+        )}
       </button>
     </div>
   );

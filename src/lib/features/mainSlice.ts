@@ -1,6 +1,6 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
-export type CountryType = {
+type CountryType = {
   region: string;
   name: {
     common: string;
@@ -49,10 +49,13 @@ export const mainSlice = createSlice({
 
       mainSlice.caseReducers.filterData(state, action);
     },
+    setRegionFilter: (state, action) => {
+      console.log(action.payload)
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { initialData, setSearch } = mainSlice.actions;
+export const { initialData, setSearch, setRegionFilter } = mainSlice.actions;
 
 export default mainSlice.reducer;
