@@ -5,6 +5,7 @@ import RegionItem from "./FilterItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setRegionFilter } from "@/lib/features/mainSlice";
 import { RootState } from "@/lib/store";
+import SelectedFilterItem from "./SelectedFilterItem";
 
 const regionsMock = [
   "Europe",
@@ -50,10 +51,10 @@ const Region = () => {
           <RegionItem onClick={() => setIsHover(false)}>{"Region"}</RegionItem>
         )}
       </button>
-      {selectedRegions.length && (
+      {selectedRegions.length > 0 && (
         <div className="flex space-x-2">
           {selectedRegions.map((item) => (
-            <div key={item}>{item}</div>
+            <SelectedFilterItem key={item}>{item}</SelectedFilterItem>
           ))}
         </div>
       )}
