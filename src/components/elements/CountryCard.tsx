@@ -2,8 +2,15 @@
 import { CountryType } from "@/constants/types";
 import { isRTL } from "@/utils/helpers";
 import Image from "next/image";
+import PersonIcon from "@/icons/person.png";
 
-const CountryCard = ({ name, flag, flags, region, population }: CountryType) => {
+const CountryCard = ({
+  name,
+  flag,
+  flags,
+  region,
+  population,
+}: CountryType) => {
   return (
     <div
       className="
@@ -15,7 +22,7 @@ const CountryCard = ({ name, flag, flags, region, population }: CountryType) => 
       cursor-pointer
     "
     >
-      {population}
+      {/* {population} */}
       <div>
         <div className="flex items-center text-2xl">
           <p>{flag}</p>
@@ -26,6 +33,10 @@ const CountryCard = ({ name, flag, flags, region, population }: CountryType) => 
             {region}
           </p>
           <p className="ml-1 text-sm">{name?.official}</p>
+        </div>
+        <div className="flex items-center mt-2 space-x-1">
+          <Image src={PersonIcon} alt="population" width={14} />
+          <p className="text-sm">{population}</p>
         </div>
       </div>
 
