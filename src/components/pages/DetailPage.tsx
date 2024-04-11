@@ -1,17 +1,19 @@
 "use client";
+import { CountryType } from "@/constants/types";
 import { RootState } from "@/lib/store";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const DetailPage = ({ urlName }: { urlName: string }) => {
   const countries = useSelector((state: RootState) => state.main.allCountries);
-  const [data, setData] = useState(null);
+  const [country, setCountry] = useState<CountryType | undefined | null>(null);
 
   useEffect(() => {
-    const countrey = countries.find(
+    const countryData = countries.find(
       (item) => item.navigateString === urlName.toLowerCase()
     );
-    console.log(countrey);
+
+    setCountry(countryData);
   }, [countries, urlName]);
 
   return (
@@ -23,7 +25,8 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
       bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 text-gray-300
       mb-6 space-y-3"
     >
-      <div>Detail</div>
+      {country === undefined && <p>Country Not Found</p>}
+      {country && <div>Detail</div>}
     </div>
   );
 };
