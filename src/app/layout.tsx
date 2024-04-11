@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${openSans.variable} ${vazir.variable}`}>
-      <body>
+      <body className="p-5 sm:p-10 md:p-14 lg:p-24 xl:container">
         <BackgroundGradientAnimation />
         {children}
       </body>

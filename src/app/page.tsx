@@ -18,7 +18,7 @@ export default async function Home() {
   const data: [] = await getData();
 
   return (
-    <main className="p-5 sm:p-10 md:p-14 lg:p-24 xl:container">
+    <main className="">
       <HomePage data={data} />
     </main>
   );
