@@ -12,7 +12,7 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
       (item) => item.navigateString === urlName.toLowerCase()
     );
     console.log(countrey);
-  }, [countries]);
+  }, [countries, urlName]);
 
   return (
     <div
