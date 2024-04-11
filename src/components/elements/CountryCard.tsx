@@ -15,12 +15,13 @@ const CountryCard = ({
   flags,
   region,
   population,
+  navigateString,
   onClick = () => {},
 }: CountryTypeProps & CountryType) => {
   return (
-    <Link href={`/${name.common}`}>
+    <Link href={`/${navigateString}`}>
       <div
-        onClick={onClick}
+        onClick={() => console.log(navigateString)}
         className="
       p-5
       border-opacity-50 rounded-lg border-gray-100 border-2
