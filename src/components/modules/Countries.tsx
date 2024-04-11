@@ -6,17 +6,12 @@ import { RootState } from "@/lib/store";
 const Countries = () => {
   const countries = useSelector((state: RootState) => state.main.countries);
 
-  const clickHandler = () => {
-    console.log("click");
-  };
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
       {countries?.map((item: any, index) => {
         return (
           <CountryCard
             key={item?.name?.common || index}
-            onClick={clickHandler}
             {...item}
             name={{
               ...item.name,
