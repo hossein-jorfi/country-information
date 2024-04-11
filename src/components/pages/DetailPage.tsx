@@ -1,9 +1,18 @@
 "use client";
 import { RootState } from "@/lib/store";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-const DetailPage = ({ name }: { name: string }) => {
-  const data = useSelector((state: RootState) => state.main);
+const DetailPage = ({ urlName }: { urlName: string }) => {
+  const countries = useSelector((state: RootState) => state.main.allCountries);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const countrey = countries.find(
+      (item) => item.navigateString === urlName.toLowerCase()
+    );
+    console.log(countrey);
+  }, [countries]);
 
   return (
     <div
