@@ -1,6 +1,12 @@
 "use client";
 
+import { RootState } from "@/lib/store";
+import { useSelector } from "react-redux";
+
 const DetailPage = () => {
+  const data = useSelector((state: RootState) => state.main);
+  console.log(data);
+
   return (
     <div
       className="
