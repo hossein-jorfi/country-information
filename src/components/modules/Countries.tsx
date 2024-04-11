@@ -8,27 +8,7 @@ const Countries = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
       {countries?.map((item: any, index) => {
-        return (
-          <CountryCard
-            key={item?.name?.common || index}
-            {...item}
-            name={{
-              ...item.name,
-              native: {
-                official: item?.name?.nativeName
-                  ? item?.name?.nativeName[
-                      Object?.keys(item?.name?.nativeName || {})[0]
-                    ].official
-                  : "-",
-                common: item?.name?.nativeName
-                  ? item?.name?.nativeName[
-                      Object?.keys(item?.name?.nativeName || {})[0]
-                    ].common
-                  : "-",
-              },
-            }}
-          />
-        );
+        return <CountryCard key={item?.name?.common || index} {...item} />;
       })}
     </div>
   );

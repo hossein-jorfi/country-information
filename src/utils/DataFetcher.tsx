@@ -16,7 +16,7 @@ async function getData() {
 }
 
 const DataFetcher = async ({ children }: { children: Readonly<ReactNode> }) => {
-  const data: CountryType[] = await getData();
+  const data: any[] = await getData();
   const editedData = await data.map((item) => {
     let navigateString = item.name.common.toLowerCase();
     if (item.name.common.includes(" ")) {
@@ -25,6 +25,21 @@ const DataFetcher = async ({ children }: { children: Readonly<ReactNode> }) => {
     return {
       ...item,
       navigateString,
+      name: {
+        ...item.name,
+        native: {
+          official: item?.name?.nativeName
+            ? item?.name?.nativeName[
+                Object?.keys(item?.name?.nativeName || {})[0]
+              ].official
+            : "-",
+          common: item?.name?.nativeName
+            ? item?.name?.nativeName[
+                Object?.keys(item?.name?.nativeName || {})[0]
+              ].common
+            : "-",
+        },
+      },
     };
   });
   return (
