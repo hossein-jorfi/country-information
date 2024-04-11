@@ -4,15 +4,21 @@ import { isRTL } from "@/utils/helpers";
 import Image from "next/image";
 import PersonIcon from "@/icons/person.png";
 
+type CountryTypeProps = {
+  onClick: () => void;
+};
+
 const CountryCard = ({
   name,
   flag,
   flags,
   region,
   population,
-}: CountryType) => {
+  onClick = () => {},
+}: CountryTypeProps & CountryType) => {
   return (
     <div
+      onClick={onClick}
       className="
       p-5
       border-opacity-50 rounded-lg border-gray-100 border-2
