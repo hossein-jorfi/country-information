@@ -1,6 +1,6 @@
 export type CountryType = {
+  id: number;
   region: string;
-  navigateString: string;
   name: {
     common: string;
     official: string;

@@ -5,20 +5,20 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import backIcon from "@/icons/back.png";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { isRTL } from "@/utils/helpers";
 
 const DetailPage = ({ urlName }: { urlName: string }) => {
   const countries = useSelector((state: RootState) => state.main.allCountries);
   const [country, setCountry] = useState<CountryType | undefined | null>(null);
   const router = useRouter();
-
+  const pathname = usePathname()
   useEffect(() => {
     const countryData = countries.find(
-      (item) => item.navigateString === urlName.toLowerCase()
+      // (item) => item.navigateString === urlName.toLowerCase()
+      (item) => item.id === +urlName
     );
     setCountry(countryData);
-    // console.log(country)
   }, [countries, urlName, country]);
 
   const handleBack = () => {
@@ -92,7 +92,7 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
                   src={country.flags.png}
                   fill={true}
                   sizes="100vw 100vw"
-                  alt={country.flags.alt}
+                  alt={country?.flags?.alt || "flag"}
                   className="w-full h-full"
                 />
               </div>

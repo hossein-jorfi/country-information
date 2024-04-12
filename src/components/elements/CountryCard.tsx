@@ -10,18 +10,17 @@ type CountryTypeProps = {
 };
 
 const CountryCard = ({
+  id,
   name,
   flag,
   flags,
   region,
   population,
-  navigateString,
   onClick = () => {},
 }: CountryTypeProps & CountryType) => {
   return (
-    <Link href={`/${navigateString}`}>
+    <Link href={`/${id}`}>
       <div
-        onClick={() => console.log(navigateString)}
         className="
       p-5
       border-opacity-50 rounded-lg border-gray-100 border-2

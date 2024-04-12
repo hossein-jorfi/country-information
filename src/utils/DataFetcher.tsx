@@ -17,14 +17,9 @@ async function getData() {
 
 const DataFetcher = async ({ children }: { children: Readonly<ReactNode> }) => {
   const data: any[] = await getData();
-  const editedData = await data.map((item) => {
-    let navigateString = item.name.common.toLowerCase();
-    if (item.name.common.includes(" ")) {
-      navigateString = navigateString.split(" ").join("_");
-    }
+  const editedData = await data.map((item, index) => {
     return {
       ...item,
-      navigateString,
       name: {
         ...item.name,
         native: {
@@ -41,6 +36,7 @@ const DataFetcher = async ({ children }: { children: Readonly<ReactNode> }) => {
         },
       },
       capital: item?.capital,
+      id: index
     };
   });
   return (
