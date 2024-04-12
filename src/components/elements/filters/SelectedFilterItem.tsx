@@ -14,6 +14,8 @@ const SelectedFilterItem = ({
     <div
       onClick={onClick}
       className="
+      mt-2
+      sm:mt-0
       bg-sky-500 bg-opacity-70
       p-1.5 
       rounded-xl
