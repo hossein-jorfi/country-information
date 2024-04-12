@@ -16,4 +16,5 @@ export type CountryType = {
   };
   flag: string;
   population: number;
+  capital: string;
 };

@@ -40,6 +40,7 @@ const DataFetcher = async ({ children }: { children: Readonly<ReactNode> }) => {
             : "-",
         },
       },
+      capital: item?.capital,
     };
   });
   return (

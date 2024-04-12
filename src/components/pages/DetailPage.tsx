@@ -55,45 +55,65 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
       >
         {country === undefined && <p>Country Not Found</p>}
         {country && (
-          <div className="flex justify-between">
-            <div className="flex flex-col justify-between w-full">
-              <div>
-                <h2 className="text-4xl">{country?.name?.common}</h2>
-                <p className="text-2xl">{country?.name?.official}</p>
+          <div className="flex flex-col space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between">
+              <div className="flex flex-col justify-between w-full">
+                <div>
+                  <h2 className="text-4xl">{country?.name?.common}</h2>
+                  <p className="text-2xl">{country?.name?.official}</p>
+                </div>
+                <div className="mt-3">
+                  <p>native:</p>
+                  <p
+                    dir={`${
+                      isRTL(country?.name?.native?.common) ? "rtl" : "ltr"
+                    }`}
+                    className={`text-2xl ${
+                      isRTL(country?.name?.native?.common) && "rtl-font"
+                    }`}
+                  >
+                    {country?.name?.native?.common}
+                  </p>
+                  <p
+                    dir={`${
+                      isRTL(country?.name?.native?.official) ? "rtl" : "ltr"
+                    }`}
+                    className={`text-2xl ${
+                      isRTL(country?.name?.native?.official) && "rtl-font"
+                    }`}
+                  >
+                    {country?.name?.native?.official}
+                  </p>
+                </div>
               </div>
-              <div className="mt-3">
-                <p>native:</p>
-                <p
-                  dir={`${
-                    isRTL(country?.name?.native?.common) ? "rtl" : "ltr"
-                  }`}
-                  className={`text-2xl ${
-                    isRTL(country?.name?.native?.common) && "rtl-font"
-                  }`}
-                >
-                  {country?.name?.native?.common}
-                </p>
-                <p
-                  dir={`${
-                    isRTL(country?.name?.native?.official) ? "rtl" : "ltr"
-                  }`}
-                  className={`text-2xl ${
-                    isRTL(country?.name?.native?.official) && "rtl-font"
-                  }`}
-                >
-                  {country?.name?.native?.official}
-                </p>
+              <div className="w-full sm:w-2/3 h-44 relative">
+                <Image
+                  priority={true}
+                  src={country.flags.png}
+                  fill={true}
+                  sizes="100vw 100vw"
+                  alt={country.flags.alt}
+                  className="w-full h-full"
+                />
               </div>
             </div>
-            <div className="w-2/3 h-auto relative">
-              <Image
-                priority={true}
-                src={country.flags.png}
-                fill={true}
-                sizes="100vw 100vw"
-                alt={country.flags.alt}
-                className="w-full h-auto"
-              />
+
+            <div className=" flex justify-start space-x-5">
+              <div>
+                <p>Region</p>
+                <div></div>
+                <p>{country?.region}</p>
+              </div>
+              <div>
+                <p>Population</p>
+                <div></div>
+                <p>{country.population}</p>
+              </div>
+              <div>
+                <p>Capital</p>
+                <div></div>
+                <p>{country.capital}</p>
+              </div>
             </div>
           </div>
         )}
