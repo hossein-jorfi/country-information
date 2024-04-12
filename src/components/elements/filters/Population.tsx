@@ -78,7 +78,7 @@ const Input = ({
       onChange={onChange}
       value={value}
       type="number"
-      className="rounded-lg bg-white bg-opacity-30 px-3 py-1 outline-none text-sm"
+      className="rounded-lg bg-white bg-opacity-30 px-3 py-1 outline-none text-sm w-full"
     />
   );
 };
