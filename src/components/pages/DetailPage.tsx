@@ -56,13 +56,13 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
         {country === undefined && <p>Country Not Found</p>}
         {country && (
           <div className="flex flex-col space-y-6">
-            <div className="flex flex-col sm:flex-row justify-between">
+            <div className="flex flex-col sm:flex-row justify-between space-y-5 sm:space-y-0">
               <div className="flex flex-col justify-between w-full">
                 <div>
                   <h2 className="text-4xl">{country?.name?.common}</h2>
                   <p className="text-2xl">{country?.name?.official}</p>
                 </div>
-                <div className="mt-3">
+                <div className="mt-3 p-0 sm:pr-4">
                   <p>native:</p>
                   <p
                     dir={`${
