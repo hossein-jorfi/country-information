@@ -12,7 +12,7 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
   const countries = useSelector((state: RootState) => state.main.allCountries);
   const [country, setCountry] = useState<CountryType | undefined | null>(null);
   const router = useRouter();
-  const pathname = usePathname()
+  const pathname = usePathname();
   useEffect(() => {
     const countryData = countries.find(
       // (item) => item.navigateString === urlName.toLowerCase()
@@ -99,21 +99,9 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
             </div>
 
             <div className=" flex justify-start space-x-5">
-              <div>
-                <p>Region</p>
-                <div></div>
-                <p>{country?.region}</p>
-              </div>
-              <div>
-                <p>Population</p>
-                <div></div>
-                <p>{country.population}</p>
-              </div>
-              <div>
-                <p>Capital</p>
-                <div></div>
-                <p>{country.capital}</p>
-              </div>
+              <CountryDataItem title="Region" value={country.region} />
+              <CountryDataItem title="Capital" value={country.capital} />
+              <CountryDataItem title="Population" value={country.population} />
             </div>
           </div>
         )}
@@ -123,3 +111,21 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
 };
 
 export default DetailPage;
+
+const CountryDataItem = ({
+  title,
+  value,
+}: {
+  title: string;
+  value: string | number;
+}) => {
+  return (
+    <div>
+      <div>
+        <p className="text-sm">{title}</p>
+        <div className="w-full h-[1px] bg-white bg-opacity-80 mt-[1px]"></div>
+      </div>
+      <p className="text-xl">{value}</p>
+    </div>
+  );
+};
