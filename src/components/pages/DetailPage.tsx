@@ -34,6 +34,7 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
           "
       >
         <Image
+          priority={true}
           onClick={handleBack}
           className="
           cursor-pointer
@@ -55,7 +56,7 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
         {country === undefined && <p>Country Not Found</p>}
         {country && (
           <div className="flex justify-between">
-            <div className="flex flex-col justify-between">
+            <div className="flex flex-col justify-between w-full">
               <div>
                 <h2 className="text-4xl">{country?.name?.common}</h2>
                 <p className="text-2xl">{country?.name?.official}</p>
@@ -84,17 +85,14 @@ const DetailPage = ({ urlName }: { urlName: string }) => {
                 </p>
               </div>
             </div>
-            <div className="w-1/2 h-auto relative">
+            <div className="w-2/3 h-auto relative">
               <Image
+                priority={true}
                 src={country.flags.png}
                 fill={true}
-                // style={{
-                //   width: '300px',
-                //   height: "auto"
-                // }}
-                // className="w-[300px] h-auto"
-                // width={300}
+                sizes="100vw 100vw"
                 alt={country.flags.alt}
+                className="w-full h-auto"
               />
             </div>
           </div>
